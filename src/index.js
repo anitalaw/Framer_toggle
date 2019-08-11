@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Frame, Color } from "framer";
+import { Frame, useCycle } from "framer";
 import "./styles.css";
 
 // Parameter
@@ -20,6 +20,8 @@ function sandwichMaker(meat) {
 }
 
 function App() {
+  const [opacity, cycle] = useCycle(0, 1);
+
   return (
     <div className="App">
       <Frame
@@ -36,6 +38,20 @@ function App() {
           shadow="10px 5px 5px blue"
           opacity={0.7}
         />
+      </Frame>
+
+      {/* Checkbox */}
+
+      <Frame width={25} height={25} border="solid" onTap={() => cycle()}>
+        <Frame
+          width={25}
+          height={25}
+          backgroundColor="white"
+          animate={{ opacity }}
+          transition={{ duration: 0.2 }}
+        >
+          ╳
+        </Frame>
       </Frame>
     </div>
   );
