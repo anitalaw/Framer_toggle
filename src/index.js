@@ -20,7 +20,8 @@ function sandwichMaker(meat) {
 }
 
 function App() {
-  const [opacity, cycle] = useCycle(0, 1);
+  const [opacity, cycleOpacities] = useCycle(0, 3);
+  const [rotate, cycleRotate] = useCycle(0, 180);
 
   return (
     <div className="App">
@@ -42,13 +43,20 @@ function App() {
 
       {/* Checkbox */}
 
-      <Frame width={25} height={25} border="solid" onTap={() => cycle()}>
+      <Frame
+        size={35}
+        border="solid"
+        background="white"
+        onTap={function() {
+          cycleOpacities();
+          cycleRotate();
+        }}
+      >
         <Frame
-          width={25}
-          height={25}
-          backgroundColor="white"
-          animate={{ opacity }}
-          transition={{ duration: 0.2 }}
+          size={25}
+          backgroundColor="transparent"
+          animate={{ opacity, rotate }}
+          transition={{ duration: 0.3 }}
         >
           ╳
         </Frame>
